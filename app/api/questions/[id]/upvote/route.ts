@@ -3,9 +3,9 @@ import { supabase } from '@/lib/supabase'
 
 export async function PATCH(
   _request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
-  const { id } = params
+  const { id } = await params
 
   if (!id) {
     return NextResponse.json({ error: 'Question ID is required' }, { status: 400 })
